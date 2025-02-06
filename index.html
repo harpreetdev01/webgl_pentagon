@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script id="vertex-shader" type="x-shader/x-vertex">
+      #version 300 es 
+      precision mediump float;
+
+      // Supplied vertex position attribute
+      in vec3 a_vertex_position;
+
+      void main()
+      {
+        // Set position in clipspace coordinates
+        gl_Position = vec4(a_vertex_position, 1.0);
+      }
+    </script>
+
+    <!-- <script id="vertex_shader" type="x-shader/x-vertex">
+      #version 300 es
+
+    </script> -->
+    
+
+    
+    <script id="fragment-shader" type="x-shader/x-fragment">
+      #version 300 es
+      precision mediump float;
+
+      // Color that is the result of this shader
+      out vec4 frag_color;
+
+      void main()
+      {
+        frag_color = vec4(0.15, 0.8, 0.1, 1.0);
+      }
+    </script>
+
+    <script type="module" src="/src/main.js"></script>
+    <title>WebGL2 - Plane</title>
+  </head>
+  <body>
+    <canvas id="webgl-canvas">
+      Your browser does not support WebGL2
+    </canvas>
+  
+  </body>
+</html>
