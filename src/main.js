@@ -65,30 +65,32 @@ const initProgram = () =>
   // Use this program
   gl.useProgram(program);
 
-  program.aVertexPosition = gl.getAttribLocation(program, 'a_vertex_position');
+  // program.aVertexPosition = gl.getAttribLocation(program, 'a_vertex_position');
 }
 
 const initBuffers = () =>
 {
-  const vertices = 
-  [
-    -0.7, 0.2, 0.0,
-    -0.4, -0.4, 0.0,
-    0.4, -0.4, 0.0,
-    0.7, 0.2, 0.0,
-    0.0, 0.8, 0.0
-  ];
+  // const vertices = 
+  // [
+  //   -0.7, 0.2, 0.0,
+  //   -0.4, -0.4, 0.0,
+  //   0.4, -0.4, 0.0,
+  //   0.7, 0.2, 0.0,
+  //   0.0, 1.0, 1.0
+  // ];
 
-  const square_vertices = [
-    -0.5, 0.5, 0.0,
-    -0.5, -0.5, 0.0,
-    0.5, -0.5, 0.0,
-    0.5, 0.5, 0.0
-  ];
+const vertices = [
+    //  POSITION     |  COLOR
+    // x    y    z   | r    g    b
+    -1.0,  -1.0, 0.5,  1.0, 0.0, 0.0,
+    -0.5, -0.5, 0.5,  0.0, 1.0, 0.0,
+    -0.5, -0.5, 0.5,  0.0, 0.0, 1.0
+]
 
   // Indices
-  indices = [0, 1, 2, 0, 2, 3, 0, 4, 3];
+  // indices = [0, 1, 2, 0, 2, 3, 0, 4, 3];
   // indices = [0, 1, 2, 0, 2, 3];
+  indices = [0, 1, 2];
 
   // Create VAO instance and bind so we can work on it
   square_vao = gl.createVertexArray();
@@ -101,8 +103,11 @@ const initBuffers = () =>
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
 
   // Provide instructions for VAO to use data in later draw
-  gl.enableVertexAttribArray(program.aVertexPosition);
-  gl.vertexAttribPointer(program.aVertexPosition, 3, gl.FLOAT, false, 0, 0);
+  gl.vertexAttribPointer(0, 3, gl.FLOAT, false, 6 * Float32Array.BYTES_PER_ELEMENT,  0);
+  gl.enableVertexAttribArray(0);
+
+  gl.vertexAttribPointer(0, 3, gl.FLOAT, false, 6 * Float32Array.BYTES_PER_ELEMENT,  3 * Float32Array.BYTES_PER_ELEMENT);
+  gl.enableVertexAttribArray(0);
 
   // Set up IBO
   // Create buffer, bind buffer, pass buffer data
